@@ -31,13 +31,14 @@
                                 <table id="multi-filter-select" class="display table table-striped table-hover" >
                                     <thead>
                                         <tr>
-                                            <th style="width:6%">SN</th>
+                                            <th style="width:5.3%">SN</th>
+                                            <th>Ref. By</th>
                                             <th>Name</th>
                                             <th>Age</th>
                                             <th>Gender</th>
                                             <th>Phone</th>
-                                            <th>Email</th>
-                                            <th>Mdical History</th>
+                                            {{-- <th>Email</th> --}}
+                                            {{-- <th>Mdical History</th> --}}
                                             <th>Address</th>
                                             <th>Date</th>
                                             <th class="no-sort" style="width:7%">Action</th>
@@ -51,7 +52,7 @@
                                             <th>Gender</th>
                                             <th>Phone</th>
                                             <th>Email</th>
-                                            <th>Mdical History</th>
+                                            {{-- <th>Mdical History</th> --}}
                                             <th>Address</th>
                                             <th>Date</th>
                                             <th>Action</th>
@@ -59,19 +60,21 @@
                                     </tfoot>
                                     <tbody>
                                         @php $x=1;@endphp
-                                        @foreach($patients as $patient)
+                                        @foreach($patientTests as $patientTest)
                                         <tr>
-                                            <td>{{ $x++ }}</td>
-                                            <td>{{ $patient->name }}</td>
-                                            <td>{{ $patient->age }}</td>
-                                            <td>{{ $patient->gender }}</td>
-                                            <td>{{ $patient->phone }}</td>
-                                            <td>{{ $patient->email }}</td>
-                                            <td>{{ $patient->mdical_history }}</td>
-                                            <td>{{ $patient->address }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($patient->created_at)->format('d/m/Y') }}</td>
+                                            <td class="text-center">{{ $x++ }}</td>
+                                            <td>{{ $patientTest->user->name }}</td>
+                                            <td>{{ $patientTest->patient->name }}</td>
+                                            <td>{{ $patientTest->patient->age }}</td>
+                                            <td>{{ $patientTest->patient->gender }}</td>
+                                            <td>{{ $patientTest->patient->phone }}</td>
+                                            {{-- <td>{{ $patientTest->patient->email }}</td> --}}
+                                            {{-- <td>{{ $patientTest->patient->mdical_history }}</td> --}}
+                                            <td>{{ $patientTest->patient->address }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($patientTest->created_at)->format('d/m/Y') }}</td>
                                             <td>
                                                 <div class="form-button-action">
+                                                    <a href="{{route('patient_show_test',$patientTest->patient_id)}}">Shoe</a>
                                                     <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>

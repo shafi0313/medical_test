@@ -1,4 +1,5 @@
 <!-- Sidebar -->
+@php $p='a' @endphp
 <div class="sidebar">
 	<div class="sidebar-background"></div>
 	<div class="sidebar-wrapper scrollbar-inner">
@@ -136,7 +137,8 @@
                 </li>
 
 
-                {{-- <li class="nav-item {{$p=='tools'?'active':''}}">
+
+                <li class="nav-item {{$p=='tools'?'active':''}}">
 					<a data-toggle="collapse" href="#tools">
 						<i class="fas fa-toolbox"></i>
 						<p>Tools</p>
@@ -145,32 +147,59 @@
 					<div class="collapse" id="tools">
 						<ul class="nav nav-collapse">
 							<li>
-                                <a href="{{ route('specialist.index') }}">
+                                <a href="{{ route('test-category.index') }}">
                                     <i class="fas fa-notes-medical"></i>
-                                    <p>Doctor Specialist</p>
-                                </a>
-							</li>
-							<li>
-								<a href="{{ route('medicine.index') }}">
-                                    <i class="fas fa-pills"></i>
-                                    <p>Medicine</p>
-                                </a>
-                            </li>
-                            <li>
-								<a href="{{ route('medical_test.index') }}">
-                                    <i class="fas fa-microscope"></i>
                                     <p>Test Category</p>
-                                </a>
-                            </li>
-                            <li>
-								<a href="{{ route('doctor_chamber.index') }}">
-                                    <i class="fas fa-microscope"></i>
-                                    <p>Doctor Chamber</p>
                                 </a>
 							</li>
 						</ul>
 					</div>
-                </li> --}}
+                </li>
+
+
+                <li class="nav-item ">
+					<a data-toggle="collapse" href="#patient">
+						<i class="fas fa-users-cog"></i>
+						<p>Patient</p>
+						<span class="caret"></span>
+					</a>
+					<div class="collapse" id="patient">
+						<ul class="nav nav-collapse">
+							<li>
+                                <a href="{{route('patient.index')}}">
+									<span class="sub-item">Show Patient</span>
+								</a>
+							</li>
+							<li>
+								<a href="{{route('patient.create')}}">
+									<span class="sub-item">Add Patient</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+                </li>
+
+                <li class="nav-item ">
+					<a data-toggle="collapse" href="#patientTest">
+						<i class="fas fa-users-cog"></i>
+						<p>Patient Test</p>
+						<span class="caret"></span>
+					</a>
+					<div class="collapse" id="patientTest">
+						<ul class="nav nav-collapse">
+							<li>
+                                <a href="{{route('patient-test.index')}}">
+									<span class="sub-item">Show Patient</span>
+								</a>
+							</li>
+							<li>
+								<a href="{{route('patient-test.create')}}">
+									<span class="sub-item">Add Patient</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+                </li>
 
 				{{-- <li class="nav-item">
                 <a href="{{ route('admin.user') }}">
@@ -178,14 +207,6 @@
 						<p>Users</p>
 					</a>
                 </li> --}}
-
-
-
-
-
-
-
-
 
 {{--
                 @role('admin|counter')

@@ -82,16 +82,32 @@
                                     </label>
                                 </div>
 
-                                <div class="row app" style="display: none">
-                                    <h3>Select Test:</h3>
-                                    @foreach($testCats as $testCat)
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" id="" name="test_cat_id[]" type="checkbox" value="{{$testCat->id}}">
-                                            <span class="form-check-sign">{{$testCat->name}}</span>
-                                        </label>
+                                {{-- <div class="row app" style="display: none">
+                                    <div class="form-group col-sm-6">
+										<label for="">Select Specialist</label>
+                                        <select class="form-control" id="doctorSpecialist">
+                                            <option>Select Specialist</option>
+                                            @foreach($testCats as $testCat)
+                                            <option value="{{$testCat->id}}">{{$testCat->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div> --}}
+                                    {{-- <div class="form-group col-md-6">
+										<label for="doctor">Select Doctor</label>
+                                        <select class="form-control" name="doctor_name" id="subs" required></select>
                                     </div>
-                                    @endforeach
+
+
+                                    <div class="form-group col-md-6">
+										<label for="doctor">Appointment Time</label>
+                                        <select class="form-control" name="time" id="doctorTime" required></select>
+                                    </div> --}}
+
+
+                                    {{-- <div class="form-group col-sm-6">
+                                        <label for="">Appointment Date</label>
+                                        <input type="txte" name="date" class="form-control date-picker datepicker" Placeholder="DD/MM/YYYY" required>
+                                    </div> --}}
                                 </div>
                                 <div class="mr-auto card-action">
                                     <button type="submit" class="btn btn-success">Submit</button>

@@ -1,12 +1,11 @@
 @extends('admin.layout.master')
-@section('title', 'Patient')
+@section('title', 'Patient Test')
 @section('content')
 <?php $p = 'patients'; ?>
 <div class="main-panel">
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Patient</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">
                         <a href="{{ route('admin.dashboard')}}"><i class="flaticon-home"></i></a>
@@ -17,7 +16,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
+                        {{-- <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Patients Table</h4>
                                 <a class="btn btn-primary btn-round ml-auto" href="{{ route('patient.create') }}">
@@ -25,62 +24,56 @@
                                     Add Patient
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="card-body">
+                            <div class="text-center">
+                                <h1>{{$patientInfo->patient->name}}</h1>
+                                <h3>
+                                    {{$patientInfo->patient->age}} <br>
+                                    {{$patientInfo->patient->phone}} <br>
+                                    {{$patientInfo->patient->address}} <br>
+                                    Ref.By: {{$patientInfo->user->name}}
+                                </h3>
+                            </div>
+
                             <div class="table-responsive">
                                 <table id="multi-filter-select" class="display table table-striped table-hover" >
                                     <thead>
                                         <tr>
-                                            <th style="width:6%">SN</th>
-                                            <th>Name</th>
-                                            <th>Age</th>
-                                            <th>Gender</th>
-                                            <th>Phone</th>
-                                            <th>Email</th>
-                                            <th>Mdical History</th>
-                                            <th>Address</th>
+                                            <th style="width:30px">SN</th>
+                                            <th>Test</th>
                                             <th>Date</th>
-                                            <th class="no-sort" style="width:7%">Action</th>
+                                            <td class="no-sort" style="width:20px; text-align:center">Action</td>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>SN</th>
                                             <th>Name</th>
-                                            <th>Age</th>
-                                            <th>Gender</th>
-                                            <th>Phone</th>
-                                            <th>Email</th>
-                                            <th>Mdical History</th>
-                                            <th>Address</th>
                                             <th>Date</th>
-                                            <th>Action</th>
+                                            {{-- <th>Action</th> --}}
                                         </tr>
                                     </tfoot>
                                     <tbody>
+
                                         @php $x=1;@endphp
-                                        @foreach($patients as $patient)
+                                        @foreach($showTests as $showTest)
                                         <tr>
-                                            <td>{{ $x++ }}</td>
-                                            <td>{{ $patient->name }}</td>
-                                            <td>{{ $patient->age }}</td>
-                                            <td>{{ $patient->gender }}</td>
-                                            <td>{{ $patient->phone }}</td>
-                                            <td>{{ $patient->email }}</td>
-                                            <td>{{ $patient->mdical_history }}</td>
-                                            <td>{{ $patient->address }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($patient->created_at)->format('d/m/Y') }}</td>
+                                            <td class="text-center">{{ $x++ }}</td>
+                                            <td>{{ $showTest->test->name }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($showTest->created_at)->format('d/m/Y') }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-danger delete" data-original-title="Remove">
+                                                    <a href="{{route('kubPrv.index',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
+                                                    <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
+                                                    <a href="{{route('kubPrv.create',$showTest->id)}}">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
+                                                    {{-- <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-danger delete" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
-                                                    </a>
+                                                    </a> --}}
                                                 </div>
                                             </td>
                                         </tr>
+
                                         @endforeach
                                     </tbody>
                                 </table>
