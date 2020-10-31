@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\PatientTest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientController extends Controller
 {
@@ -69,10 +70,10 @@ class PatientController extends Controller
             }
 
             DB::commit();
-            // toast('Pay Slip saved success!','success');
+            toast('Patient Successfully Inserted','success');
         } catch (\Exception $e) {
             DB::rollBack();
-            // toast($e->getMessage(),'error');
+            toast($e->getMessage(),'error');
         }
         return redirect()->route('patient.index');
 

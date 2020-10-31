@@ -119,8 +119,8 @@
 
 @include('admin.layout.footer')
 
-{{-- @include('sweetalert::alert') --}}
 
+@include('sweetalert::alert')
 @stack('custom_scripts')
 
 
