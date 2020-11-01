@@ -6,7 +6,6 @@
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Patient</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home"><a href="{{ route('admin.dashboard')}}"><i class="flaticon-home"></i></a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
@@ -44,72 +43,75 @@
                                     Ref.By: {{$patientTest->user->name}}
                                 </h3>
                             </div>
-                            <form action="{{ route('kubPrv.store')}}" method="post">
+                            <form action="{{ route('kub-Prv.store')}}" method="post">
                                 @csrf
                                 <div class="row">
                                     <input type="hidden" name="patient_test_id" value="{{$patientTest->id}}">
-                                    <input type="hidden" name="user_id" value="{{$patientTest->user_id}}">
+                                    <input type="hidden" name="ref_by_id" value="{{$patientTest->ref_by_id}}">
                                     <input type="hidden" name="patient_id" value="{{$patientTest->patient_id }}">
                                     <input type="hidden" name="test_cat_id" value="{{$patientTest->test_cat_id  }}">
                                     <input type="hidden" name="r_status" value="{{$patientTest->r_status  }}">
+                                    <input type="hidden" name="seen_by_id" value="{{auth()->user()->id}}">
                                     @php
-                                    if(isset($kubPvr->kidney)){
-                                    $kidney = $kubPvr->kidney;
-                                    }else{$kidney = old('kidney');}
+                                        if(isset($kubPvr->kidney)){
+                                            $kidney = $kubPvr->kidney;
+                                        }else{$kidney = old('kidney');}
                                     @endphp
-                                    <div class="form-group col-sm-2">
-                                        <label for="kidney">kidney</label>
+                                    <div class="form-group col">
+                                        <label for="kidney">kidney<span class="t_r">*</span></label>
                                         <input type="text" name="kidney" class="form-control" value="{{$kidney}}"
                                             placeholder="Enter Name" required>
                                     </div>
                                     @php
-                                    if(isset($kubPvr->kidney_left)){
-                                    $kidney_left = $kubPvr->kidney_left;
-                                    }else{$kidney_left = old('kidney_left');}
+                                        if(isset($kubPvr->kidney_left)){
+                                        $kidney_left = $kubPvr->kidney_left;
+                                        }else{$kidney_left = old('kidney_left');}
                                     @endphp
-                                    <div class="form-group col-sm-2">
-                                        <label for="kidney_left">kidney Left</label>
+                                    <div class="form-group col">
+                                        <label for="kidney_left">kidney Left<span class="t_r">*</span></label>
                                         <input type="text" name="kidney_left" class="form-control"
                                             value="{{$kidney_left}}" placeholder="Enter Contact No" required>
                                     </div>
                                     @php
-                                    if(isset($kubPvr->rk)){
-                                    $rk = $kubPvr->rk;
-                                    }else{$rk = old('rk');}
+                                        if(isset($kubPvr->rk)){
+                                        $rk = $kubPvr->rk;
+                                        }else{$rk = old('rk');}
                                     @endphp
-                                    <div class="form-group col-sm-2">
-                                        <label for="rk">RK</label>
+                                    <div class="form-group col">
+                                        <label for="rk">RK<span class="t_r">*</span></label>
                                         <input type="text" name="rk" class="form-control" value="{{$rk}}"
                                             placeholder="Enter Name">
                                     </div>
                                     @php
-                                    if(isset($kubPvr->lk)){
-                                    $lk = $kubPvr->lk;
-                                    }else{$lk = old('lk');}
+                                        if(isset($kubPvr->lk)){
+                                        $lk = $kubPvr->lk;
+                                        }else{$lk = old('lk');}
                                     @endphp
 
-                                    <div class="form-group col-sm-2">
-                                        <label for="lk">LK</label>
+                                    <div class="form-group col">
+                                        <label for="lk">LK<span class="t_r">*</span></label>
                                         <input type="text" name="lk" class="form-control" value="{{$lk}}"
                                             placeholder="Enter Name">
                                     </div>
                                     @php
-                                    if(isset($kubPvr->pvr)){
-                                    $pvr = $kubPvr->pvr;
-                                    }else{$pvr = old('pvr');}
+                                        if(isset($kubPvr->pvr)){
+                                        $pvr = $kubPvr->pvr;
+                                        }else{$pvr = old('pvr');}
                                     @endphp
-                                    <div class="form-group col-sm-2">
-                                        <label for="pvr">PVR</label>
+                                    <div class="form-group col">
+                                        <label for="pvr">PVR<span class="t_r">*</span></label>
                                         <input type="text" name="pvr" class="form-control" value="{{$pvr}}"
                                             placeholder="Enter Name">
                                     </div>
                                     @php
-                                    if(isset($kubPvr->interpretation)){
-                                    $interpretation = $kubPvr->interpretation;
-                                    }else{$interpretation = "Normal findings at USG.";}
+                                        if(isset($kubPvr->interpretation)){
+                                            $interpretation = $kubPvr->interpretation;
+                                        }else{$interpretation = "Normal findings at USG.";}
                                     @endphp
+                                </div>
+                                <div class="row">
                                     <div class="form-group col-sm-6">
-                                        <label for="interpretation">Interpretation</label>
+                                        <label for="interpretation">Interpretation<span class="t_r">*</span></label>
                                         <input type="text" name="interpretation" class="form-control"
                                             value="{{$interpretation}}" placeholder="Enter Name">
                                     </div>

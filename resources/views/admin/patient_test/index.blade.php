@@ -6,11 +6,10 @@
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Patient</h4>
                 <ul class="breadcrumbs">
-                    <li class="nav-home">
-                        <a href="{{ route('admin.dashboard')}}"><i class="flaticon-home"></i></a>
-                    </li>
+                    <li class="nav-home"><a href="{{ route('admin.dashboard')}}"><i class="flaticon-home"></i></a></li>
+                    <li class="separator"><i class="flaticon-right-arrow"></i></li>
+                    <li class="nav-item active">Patient Test</li>
                 </ul>
             </div>
             <div class="divider1"></div>
@@ -74,13 +73,16 @@
                                             <td>{{ \Carbon\Carbon::parse($patientTest->created_at)->format('d/m/Y') }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="{{route('patient_show_test',$patientTest->patient_id)}}">Shoe</a>
+                                                    <a href="{{route('patient_show_test',$patientTest->patient_id)}}" data-toggle="tooltip" title="" class="btn btn-link " data-original-title="Show All Test">
+                                                        <i class="fas fa-file-medical-alt"></i>
+                                                    </a>
+                                                    <span>||</span>
                                                     <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-danger delete" data-original-title="Remove">
+                                                    {{-- <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-danger delete" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
-                                                    </a>
+                                                    </a> --}}
                                                 </div>
                                             </td>
                                         </tr>

@@ -140,7 +140,7 @@
 
                 <li class="nav-item {{$p=='tools'?'active':''}}">
 					<a data-toggle="collapse" href="#tools">
-						<i class="fas fa-toolbox"></i>
+						<i class="fas fa-tools"></i>
 						<p>Tools</p>
 						<span class="caret"></span>
 					</a>
@@ -159,7 +159,7 @@
 
                 <li class="nav-item ">
 					<a data-toggle="collapse" href="#patient">
-						<i class="fas fa-users-cog"></i>
+						<i class="fas fa-user-injured"></i>
 						<p>Patient</p>
 						<span class="caret"></span>
 					</a>
@@ -181,7 +181,7 @@
 
                 <li class="nav-item ">
 					<a data-toggle="collapse" href="#patientTest">
-						<i class="fas fa-users-cog"></i>
+						<i class="fas fa-vials"></i>
 						<p>Patient Test</p>
 						<span class="caret"></span>
 					</a>
@@ -189,14 +189,14 @@
 						<ul class="nav nav-collapse">
 							<li>
                                 <a href="{{route('patient-test.index')}}">
-									<span class="sub-item">Show Patient</span>
+									<span class="sub-item">Show Patient Test</span>
 								</a>
 							</li>
-							<li>
+							{{-- <li>
 								<a href="{{route('patient-test.create')}}">
 									<span class="sub-item">Add Patient</span>
 								</a>
-							</li>
+							</li> --}}
 						</ul>
 					</div>
                 </li>

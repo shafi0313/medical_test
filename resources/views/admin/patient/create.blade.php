@@ -6,7 +6,6 @@
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Patient</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home"><a href="{{ route('admin.dashboard')}}"><i class="flaticon-home"></i></a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
@@ -39,19 +38,31 @@
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-sm-6">
-                                        <label for="name">Patient Name</label>
-                                        <input type="text" name="name" class="form-control" id="name" value="{{old('name')}}" placeholder="Enter Name" required>
+                                        <label for="name">Patient Name<span class="t_r">*</span></label>
+                                        <input type="text" name="name" class="form-control" id="name @error('name') is-invalid @enderror" value="{{old('name')}}" placeholder="Enter Name" required>
+                                        @error('name')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
                                     <div class="form-group col-sm-6">
-                                        <label for="phone">Patient Contact No</label>
-                                        <input type="text" name="phone" class="form-control" id="phone" value="{{old('phone')}}" placeholder="Enter Contact No" required>
+                                        <label for="phone">Patient Contact No<span class="t_r">*</span></label>
+                                        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone" value="{{old('phone')}}" placeholder="Enter Contact No" required>
+                                        @error('phone')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
                                     <div class="form-group col-sm-6">
                                         <label for="email">Patient Email</label>
-                                        <input type="email" name="email" class="form-control" id="email" value="{{old('email')}}" placeholder="Enter Name">
+                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email')}}" placeholder="Enter Name">
+                                        @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
                                     <div class="form-check col-sm-3">
-                                        <label>Gender</label><br>
+                                        <label>Gender<span class="t_r">*</span></label><br>
                                         <label class="form-radio-label">
                                             <input class="form-radio-input" type="radio" name="gender" value="Male" checked="">
                                             <span class="form-radio-sign">Male</span>
@@ -61,14 +72,20 @@
                                             <span class="form-radio-sign">Female</span>
                                         </label>
                                     </div>
+
                                     <div class="form-group col-sm-3">
-                                        <label for="age">Patient Age</label>
-                                        <input type="text" name="age" class="form-control" id="age" value="{{old('age')}}" placeholder="Enter Age" required>
+                                        <label for="age">Patient Age<span class="t_r">*</span></label>
+                                        <input type="text" name="age" class="form-control @error('age') is-invalid @enderror" id="age" value="{{old('age')}}" placeholder="Enter Age" required>
+                                        @error('age')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
                                     <div class="form-group col-sm-12">
                                         <label for="address">Patient Address</label>
                                         <textarea class="form-control" id="address" name="address" rows="2" {{old('address')}}></textarea>
                                     </div>
+
                                     <div class="form-group col-sm-12">
                                         <label for="medical_history">Medical History</label>
                                         <textarea class="form-control" id="medical_history" name="medical_history" rows="2" {{old('medical_history')}}></textarea>
@@ -77,7 +94,7 @@
 
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" id="app_sow" name="ifapnmt" type="checkbox" value="1">
+                                        <input class="form-check-input" id="app_sow" name="iftest" type="checkbox" value="1">
                                         <span class="form-check-sign">Click here if you want to take an apartment</span>
                                     </label>
                                 </div>

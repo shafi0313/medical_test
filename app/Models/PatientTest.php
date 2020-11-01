@@ -13,7 +13,7 @@ class PatientTest extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'ref_by_id');
     }
 
     public function patient()

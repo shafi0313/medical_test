@@ -40,10 +40,10 @@
                                 <table id="multi-filter-select" class="display table table-striped table-hover" >
                                     <thead>
                                         <tr>
-                                            <th style="width:30px">SN</th>
+                                            <th style="width:38px">SN</th>
                                             <th>Test</th>
                                             <th>Date</th>
-                                            <td class="no-sort" style="width:20px; text-align:center">Action</td>
+                                            <td class="no-sort" style="width:120px; text-align:center">Action</td>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -63,13 +63,19 @@
                                             <td>{{ $showTest->test->name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($showTest->created_at)->format('d/m/Y') }}</td>
                                             <td>
-                                                <div class="form-button-action">
-                                                    <a href="{{route('kubPrv.index',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
+                                                <div class="form-button-action" style="display:{{($showTest->test_cat_id == '1')?'inline-block':'none'}}">
+                                                    <a href="{{route('kub-Prv.show',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
                                                     <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
-                                                    <a href="{{route('kubPrv.create',$showTest->id)}}">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
+                                                    <a href="{{route('kubPrv.create',$showTest->id)}}" class="display:">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
                                                     {{-- <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-danger delete" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
                                                     </a> --}}
+                                                </div>
+
+                                                <div class="form-button-action" style="display:{{($showTest->test_cat_id == '2')?'inline-block':'none'}}">
+                                                    <a href="{{route('pregnancy-profile.show',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
+                                                    <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
+                                                    <a href="{{route('pregnancy-profile.create',$showTest->id)}}">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
                                                 </div>
                                             </td>
                                         </tr>

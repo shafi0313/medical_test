@@ -8,7 +8,7 @@
     <meta content='{{csrf_token()}}' name='csrf-token' />
 	<link rel="icon" href="{{ asset('backend/assets/img/icon.ico') }}" type="image/x-icon"/>
 
-	<!-- Fonts and icons -->
+    <!-- Fonts and icons -->
 	<script src="{{ asset('backend/assets/js/plugin/webfont/webfont.min.js') }}"></script>
 	<script>
 		WebFont.load({
@@ -19,6 +19,7 @@
 			}
 		});
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap.min.css') }}">
@@ -26,25 +27,15 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" >
 
+
 	<!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/demo.css') }}">
 
     {{-- For Date Picker --}}
     <link rel="stylesheet" href="{{ asset('backend/assets/datepicker/css/bootstrap-datepicker3.standalone.min.css') }}">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-	{{-- <link rel="stylesheet" href="{{ asset('admin/assets/cdn/jquery-ui.css')}}"> --}}
 
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    {{-- @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"]) --}}
-
-	{{-- <script src="{{ asset('admin/assets/cdn/jquery-ui.js')}}"></script> --}}
-
-	{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
-    {{-- <script src="{{ asset('admin/assets/cdn/toastr.min.js')}}"></script> --}}
-
-    {{-- Presscription Medicine Search --}}
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"> --}}
 </head>
 <body>
 	<div class="wrapper">
@@ -55,7 +46,7 @@
 			<!-- Logo Header -->
 			<div class="logo-header">
 
-                <a href="{{ route('admin.dashboard') }}" class="logo"> <h2 class="display:4 text-light mt-3">PMS</h2>
+                <a href="{{ route('admin.dashboard') }}" class="logo"> <h2 class="display:4 text-light mt-3">Medical Test</h2>
 					{{-- <img src="{{ asset('backend/assets/img/logoazzara.svg') }}" alt="navbar brand" class="navbar-brand"> --}}
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">

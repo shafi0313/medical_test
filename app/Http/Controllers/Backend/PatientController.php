@@ -44,12 +44,13 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user()->id;
+        $status = 1;
         $data = $request->validate([
             'name' => "required",
             'age' => "required",
             'gender' => "required",
             'email' => "sometimes",
-            'phone' => "required|integer|unique:patients,phone",
+            'phone' => "required|numeric|unique:patients,phone",
             'address' => "sometimes",
             'add_by' => "sometimes",
             'mdical_history' => "sometimes",
@@ -57,25 +58,30 @@ class PatientController extends Controller
 
         DB::beginTransaction();
 
-
         try {
             $patient = Patient::create($data);
-            foreach($request->test_cat_id as $key => $v){
-                $patientTest=[
-                    'user_id' => $user,
-                    'patient_id' => $patient->id,
-                    'test_cat_id' => $request->test_cat_id[$key],
-                ];
-                PatientTest::create($patientTest);
+            if($request->get('iftest') == 1)
+            {
+                foreach($request->test_cat_id as $key => $v){
+                    $patientTest=[
+                        'ref_by_id' => $user,
+                        'patient_id' => $patient->id,
+                        'test_cat_id' => $request->test_cat_id[$key],
+                        'status' => $status--,
+                    ];
+                    PatientTest::create($patientTest);
+                }
             }
 
             DB::commit();
             toast('Patient Successfully Inserted','success');
-        } catch (\Exception $e) {
+            return redirect()->route('patient.index');
+        } catch (\Exception $ex) {
             DB::rollBack();
-            toast($e->getMessage(),'error');
+            toast($ex->getMessage(),'error');
+            return back();
         }
-        return redirect()->route('patient.index');
+
 
     }
 
@@ -121,6 +127,7 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Patient::find($id)->delete();
+        return redirect()->back();
     }
 }

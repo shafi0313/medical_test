@@ -66,7 +66,21 @@
     color: #4D7CFE;
 }
 
+/* Text Color */
+.t_r {
+    color:red;
+    font-weight: 900;
+}
+
 /* Data table  */
+.table td, .table th {
+    padding: 5px 5px !important;
+}
+
+table.dataTable thead .sorting:after, table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc_disabled:after, table.dataTable thead .sorting_desc_disabled:before {
+    bottom: 6px;
+}
+
 .no-sort::after {
     display: none!important;
 }
