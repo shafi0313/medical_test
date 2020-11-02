@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\PatientController;
 use App\Http\Controllers\Backend\TestCatController;
@@ -38,6 +39,9 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
 
     Route::resource('/pregnancy-profile', PregnancyProfileController::class)->only(['store','show']);
     Route::get('/pregnancy_profile/{id}', [PregnancyProfileController::class, 'createId'])->name('pregnancy-profile.create');
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/laraDashboard', [AuthController::class, 'laraDashboard'])->name('laraDashboard');
 
     // Route::get('/dashboard','DashboardController@index')->name('admin.dashboard');
 });

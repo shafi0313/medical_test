@@ -159,7 +159,7 @@
                             <div class="u-text">
                                 <h4>{{ Auth::user()->name }}</h4>
                                 <p class="text-muted">{{ Auth::user()->email }}</p>
-                                {{-- <a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a> --}}
+                            <a href="{{route('laraDashboard')}}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                             </div>
                         </div>
                     </li>
@@ -171,7 +171,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        
+
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                         </a>
