@@ -37,6 +37,10 @@
                             <form action="{{ route('patient.update', $patient->id)}}" method="post">
                                 @csrf
                                 @method('PUT')
+                                {{-- @foreach ($patient_test as $patient_tests)
+                                    <input type="text" name="r_status[]" value="{{ $patient_tests->r_status}}">
+                                @endforeach --}}
+
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <label for="name">Patient Name<span class="t_r">*</span></label>
@@ -106,10 +110,12 @@
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" id="" name="test_cat_id[]" type="checkbox" value="{{$testCat->id}}">
+
                                             <span class="form-check-sign">{{$testCat->name}}</span>
                                         </label>
                                     </div>
                                     @endforeach
+                                    {{-- <input class="form-check-input" id="" type="checkbox" checked> --}}
                                 </div>
                                 <div align="center" class="mr-auto card-action">
                                     <button type="submit" class="btn btn-success">Submit</button>

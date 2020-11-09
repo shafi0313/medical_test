@@ -26,13 +26,29 @@
                             </div>
                         </div> --}}
                         <div class="card-body">
+                            {{-- <div class="row justify-content-center">
+                                <div class="col-md-3">
+                                    <table class="table">
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>:</td>
+                                            <td>{{$patientInfo->patient->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Age</td>
+                                            <td>:</td>
+                                            <td>{{$patientInfo->patient->age}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div> --}}
                             <div class="text-center">
-                                <h1>{{$patientInfo->patient->name}}</h1>
+                                <h1><strong>Name: </strong>{{$patientInfo->patient->name}}</h1>
                                 <h3>
-                                    {{$patientInfo->patient->age}} <br>
-                                    {{$patientInfo->patient->phone}} <br>
-                                    {{$patientInfo->patient->address}} <br>
-                                    Ref.By: {{$patientInfo->user->name}}
+                                    <strong>Age: </strong> {{$patientInfo->patient->age}} Years<br>
+                                    <strong>Phone: </strong>{{$patientInfo->patient->phone}}<br>
+                                    <strong>Address: </strong>{{$patientInfo->patient->address}}<br>
+                                    <strong>Ref.By: </strong>{{$patientInfo->user->name}}
                                 </h3>
                             </div>
 

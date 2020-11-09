@@ -105,7 +105,8 @@ class PatientController extends Controller
     {
         $patient = Patient::find($id);
         $testCats = TestCat::all();
-        return view('admin.patient.edit', compact('patient','testCats'));
+        $patient_test = PatientTest::where('patient_id', $id)->get();
+        return view('admin.patient.edit', compact('patient','testCats','patient_test'));
     }
 
     /**
@@ -119,6 +120,8 @@ class PatientController extends Controller
     {
         $user = auth()->user()->id;
         $status = 1;
+        // $r_status = $request->get('r_status');
+
         $data = $request->validate([
             'name' => "required",
             'age' => "required",
@@ -137,6 +140,8 @@ class PatientController extends Controller
             $update->update($data);
             if($request->get('iftest') == 1)
             {
+                PatientTest::where('patient_id', $id)->delete();
+
                 foreach($request->test_cat_id as $key => $v){
                     $patientTest=[
                         'ref_by_id' => $user,
@@ -144,7 +149,7 @@ class PatientController extends Controller
                         'test_cat_id' => $request->test_cat_id[$key],
                         'status' => $status--,
                     ];
-                    PatientTest::where('patient_id', $id)->update($patientTest);
+                    PatientTest::where('patient_id', $id)->create($patientTest);
                 }
             }
 
