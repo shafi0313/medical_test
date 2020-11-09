@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\TestReportController;
 use App\Http\Controllers\Backend\PatientTestController;
 use App\Http\Controllers\Backend\PregnancyProfileController;
+use App\Http\Controllers\Backend\WholeAbdomenMaleController;
 use App\Http\Controllers\Backend\WholeAbdomenFemaleController;
 
 /*
@@ -43,6 +44,9 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
 
     Route::resource('/whole-abdomen-female', WholeAbdomenFemaleController::class)->only(['store','show']);
     Route::get('/whole_abdomen_female/{id}', [WholeAbdomenFemaleController::class, 'createId'])->name('whole-abdomen-female.create');
+
+    Route::resource('/whole-abdomen-male', WholeAbdomenMaleController::class)->only(['store','show']);
+    Route::get('/whole_abdomen_male/{id}', [WholeAbdomenMaleController::class, 'createId'])->name('whole-abdomen-male.create');
 
 
 

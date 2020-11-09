@@ -63,6 +63,7 @@
                                             <td>{{ $showTest->test->name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($showTest->created_at)->format('d/m/Y') }}</td>
                                             <td>
+                                                {{-- Kub Pvr --}}
                                                 <div class="form-button-action" style="display:{{($showTest->test_cat_id == '1')?'inline-block':'none'}}">
                                                     <a href="{{route('kub-Prv.show',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
                                                     <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
@@ -72,20 +73,28 @@
                                                     </a> --}}
                                                 </div>
 
+                                                {{-- Pregnancy Profile --}}
                                                 <div class="form-button-action" style="display:{{($showTest->test_cat_id == '2')?'inline-block':'none'}}">
                                                     <a href="{{route('pregnancy-profile.show',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
                                                     <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
                                                     <a href="{{route('pregnancy-profile.create',$showTest->id)}}">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
                                                 </div>
 
+                                                {{-- Whole Abdomen Female --}}
                                                 <div class="form-button-action" style="display:{{($showTest->test_cat_id == '3')?'inline-block':'none'}}">
                                                     <a href="{{route('whole-abdomen-female.show',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
                                                     <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
                                                     <a href="{{route('whole-abdomen-female.create',$showTest->id)}}">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
                                                 </div>
+
+                                                {{-- Whole Abdomen Male --}}
+                                                <div class="form-button-action" style="display:{{($showTest->test_cat_id == '4')?'inline-block':'none'}}">
+                                                    <a href="{{route('whole-abdomen-male.show',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
+                                                    <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
+                                                    <a href="{{route('whole-abdomen-male.create',$showTest->id)}}">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
+                                                </div>
                                             </td>
                                         </tr>
-
                                         @endforeach
                                     </tbody>
                                 </table>

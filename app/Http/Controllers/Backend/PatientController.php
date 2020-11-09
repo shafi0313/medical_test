@@ -20,7 +20,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all();
+        $patients = Patient::latest()->get();
         return view('admin.patient.index', compact('patients'));
     }
 
