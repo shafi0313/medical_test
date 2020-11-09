@@ -17,12 +17,13 @@ class TestCatController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = TestCat::latest()->get();
+            $data = TestCat::all();
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="btn btn-link btn-primary btn-sm editBook"><i class="fa fa-edit"></i></a>';
-                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-link btn-danger deleteBook"><i class="fa fa-times"></i></a>';
+                        // $btn = $btn.'<span>||</span>';
+                        // $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-link btn-danger deleteBook"><i class="fa fa-times"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action'])

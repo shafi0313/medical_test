@@ -77,6 +77,12 @@
                                                     <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
                                                     <a href="{{route('pregnancy-profile.create',$showTest->id)}}">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
                                                 </div>
+
+                                                <div class="form-button-action" style="display:{{($showTest->test_cat_id == '3')?'inline-block':'none'}}">
+                                                    <a href="{{route('whole-abdomen-female.show',$showTest->id)}}" target="_blank" style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}">Show</a>
+                                                    <span style="display:{{($showTest->r_status=='1')?'inline-block':'none'}}" class="mx-2">||</span>
+                                                    <a href="{{route('whole-abdomen-female.create',$showTest->id)}}">{{($showTest->r_status=='1')?'Update':'Create'}}</a>
+                                                </div>
                                             </td>
                                         </tr>
 

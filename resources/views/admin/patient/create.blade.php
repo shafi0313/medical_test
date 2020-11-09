@@ -100,7 +100,7 @@
                                 </div>
 
                                 <div class="row app" style="display: none">
-                                    <h3>Select Test:</h3>
+                                    <h3 style="margin-top: 10px; margin-left: 25px; font-weight: bold">Select Test:</h3>
                                     @foreach($testCats as $testCat)
                                     <div class="form-check">
                                         <label class="form-check-label">
@@ -110,7 +110,7 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                <div class="mr-auto card-action">
+                                <div align="center" class="mr-auto card-action">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                     <button type="reset" class="btn btn-danger">Reset</button>
                                 </div>
@@ -129,40 +129,6 @@
     $('#app_sow').click(function() {
         $('.app').slideToggle("slide");
     });
-</script>
-<script type="text/javascript">
-        $('#doctorSpecialist').on('change',function(e) {
-         var cat_id = $("#doctorSpecialist").val();
-         $.ajax({
-               url:'',
-               type:"get",
-               data: {
-                   cat_id: cat_id
-                },
-               success:function (res) {
-                   res = $.parseJSON(res);
-                   console.log(res.subCat)
-                    $('#subs').html(res.subCat);
-               }
-           })
-
-           $('#subs').on('change',function(e) {
-            var doctor_id = $("#subs").val();
-            // alert(doctor_id);
-            $.ajax({
-                url:'',
-                type:"get",
-                data: {
-                        doctor_id: doctor_id
-                    },
-                success:function (res) {
-                    res = $.parseJSON(res);
-                    console.log(res.doctorTime)
-                        $('#doctorTime').html(res.doctorTime);
-                },
-            })
-        });
-        });
 </script>
 @endpush
 

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Backend;
 use Carbon\Carbon;
 use App\Models\Patient;
 use App\Models\TestCat;
+use App\Models\PatientTest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\PatientTest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientController extends Controller
@@ -81,8 +81,6 @@ class PatientController extends Controller
             toast($ex->getMessage(),'error');
             return back();
         }
-
-
     }
 
     /**
@@ -94,6 +92,7 @@ class PatientController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -104,7 +103,9 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $patient = Patient::find($id);
+        $testCats = TestCat::all();
+        return view('admin.patient.edit', compact('patient','testCats'));
     }
 
     /**
@@ -116,7 +117,45 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = auth()->user()->id;
+        $status = 1;
+        $data = $request->validate([
+            'name' => "required",
+            'age' => "required",
+            'gender' => "required",
+            'email' => "sometimes",
+            'phone' => "required",
+            'address' => "sometimes",
+            'add_by' => "sometimes",
+            'mdical_history' => "sometimes",
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $update  = Patient::find($id);
+            $update->update($data);
+            if($request->get('iftest') == 1)
+            {
+                foreach($request->test_cat_id as $key => $v){
+                    $patientTest=[
+                        'ref_by_id' => $user,
+                        'patient_id' => $update->id,
+                        'test_cat_id' => $request->test_cat_id[$key],
+                        'status' => $status--,
+                    ];
+                    PatientTest::where('patient_id', $id)->update($patientTest);
+                }
+            }
+
+            DB::commit();
+            toast('Patient Successfully Inserted','success');
+            return redirect()->route('patient.index');
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            toast($ex->getMessage(),'error');
+            return back();
+        }
     }
 
     /**

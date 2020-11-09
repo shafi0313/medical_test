@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\Backend\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AuthController;
+use App\Http\Controllers\Backend\KubPvrController;
 use App\Http\Controllers\Backend\PatientController;
 use App\Http\Controllers\Backend\TestCatController;
 use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\KubPvrController;
 use App\Http\Controllers\Backend\TestReportController;
 use App\Http\Controllers\Backend\PatientTestController;
 use App\Http\Controllers\Backend\PregnancyProfileController;
+use App\Http\Controllers\Backend\WholeAbdomenFemaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,12 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
 
     Route::resource('/pregnancy-profile', PregnancyProfileController::class)->only(['store','show']);
     Route::get('/pregnancy_profile/{id}', [PregnancyProfileController::class, 'createId'])->name('pregnancy-profile.create');
+
+    Route::resource('/whole-abdomen-female', WholeAbdomenFemaleController::class)->only(['store','show']);
+    Route::get('/whole_abdomen_female/{id}', [WholeAbdomenFemaleController::class, 'createId'])->name('whole-abdomen-female.create');
+
+
+
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/laraDashboard', [AuthController::class, 'laraDashboard'])->name('laraDashboard');

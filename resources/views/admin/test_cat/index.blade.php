@@ -32,7 +32,7 @@
                                             <th>Name</th>
                                             <th>Amount</>
                                             <th>Info</th>
-                                            <th style="text-align:center;width:80px">Action</th>
+                                            <th style="text-align:center;width:60px">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -40,6 +40,20 @@ class PregnancyProfileController extends Controller
      */
     public function store(Request $request)
     {
+         // $this->$request->validate([
+                // 'patient_test_id' => 'required',
+                // 'ref_by_id' => 'required',
+                // 'seen_by_id' => 'required',
+                // 'patient_id' => 'required',
+                // 'test_cat_id' => 'required',
+                // 'kidney' => 'required|integer',
+                // 'kidney_left' => 'required|integer',
+                // 'lk' => 'required|integer',
+                // 'rk' => 'required|integer',
+                // 'pvr' => 'required|integer',
+                // 'interpretation' => 'required',
+            // ]);
+
         $patientTestID = $request->get('patient_test_id');
         $r_status = $request->get('r_status');
         $reportStatus = ['r_status' => 1];
@@ -75,28 +89,11 @@ class PregnancyProfileController extends Controller
             'impression' => $request->get('impression'),
         ];
 
+        DB::beginTransaction();
+
 
         if($r_status==0)
         {
-            // $this->$request->validate([
-                // 'patient_test_id' => 'required',
-                // 'ref_by_id' => 'required',
-                // 'seen_by_id' => 'required',
-                // 'patient_id' => 'required',
-                // 'test_cat_id' => 'required',
-                // 'kidney' => 'required|integer',
-                // 'kidney_left' => 'required|integer',
-                // 'lk' => 'required|integer',
-                // 'rk' => 'required|integer',
-                // 'pvr' => 'required|integer',
-                // 'interpretation' => 'required',
-            // ]);
-
-
-
-
-            DB::beginTransaction();
-
             try{
                 PregnancyProfile::create($data);
                 PatientTest::where('id', $patientTestID)->update($reportStatus);
@@ -110,16 +107,15 @@ class PregnancyProfileController extends Controller
             }
         }else{
             try{
-                PregnancyProfile::where('id',$patientTestID)->update($data);
+                PregnancyProfile::where('patient_test_id', $patientTestID)->update($data);
                 DB::commit();
                 toast('Report Update Successfully','success');
-                return redirect()->route('patient_show_test',$patient_id);
+                return redirect()->route('patient_show_test', $patient_id);
             }catch(\Exception $ex) {
                 DB::rollback();
                 toast($ex->getMessage().'Update Failed','error');
                 return back();
             }
-
         }
     }
 

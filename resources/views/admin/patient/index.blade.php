@@ -30,7 +30,7 @@
                                 <table id="multi-filter-select" class="display table table-striped table-hover" >
                                     <thead>
                                         <tr>
-                                            <th style="width:6%">SN</th>
+                                            <th style="width:35px">SN</th>
                                             <th>Name</th>
                                             <th>Age</th>
                                             <th>Gender</th>
@@ -39,7 +39,7 @@
                                             <th>Mdical History</th>
                                             <th>Address</th>
                                             <th>Date</th>
-                                            <th class="no-sort" style="width:7%">Action</th>
+                                            <th class="no-sort text-center" style="width:25px">Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -60,7 +60,7 @@
                                         @php $x=1;@endphp
                                         @foreach($patients as $patient)
                                         <tr>
-                                            <td>{{ $x++ }}</td>
+                                            <td class="text-center">{{ $x++ }}</td>
                                             <td>{{ $patient->name }}</td>
                                             <td>{{ $patient->age }}</td>
                                             <td>{{ $patient->gender }}</td>
@@ -71,14 +71,14 @@
                                             <td>{{ \Carbon\Carbon::parse($patient->created_at)->format('d/m/Y') }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Edit Task">
+                                                    <a href="{{ route('patient.edit', $patient->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Edit">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-
+                                                    <span>||</span>
                                                     <form action="{{route('patient.destroy',$patient->id)}}" class="">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button data-toggle="tooltip" class="btn btn-link btn-danger" data-original-title="Remove" onclick="return confirm('Are you sure?')">
+                                                        <button data-toggle="tooltip" class="btn btn-link btn-danger" data-original-title="Delete" onclick="return confirm('Are you sure?')">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </form>

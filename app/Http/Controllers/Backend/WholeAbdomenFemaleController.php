@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\KubPvr;
 use App\Models\PatientTest;
 use Illuminate\Http\Request;
+use App\Models\WholeAbdomenFemale;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class KubPvrController extends Controller
+class WholeAbdomenFemaleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,16 +20,21 @@ class KubPvrController extends Controller
         //
     }
 
+    public function createId($id)
+    {
+        $patientTest = PatientTest::find($id);
+        $wholeAbdomenFemale = WholeAbdomenFemale::where('patient_test_id', $id)->first();
+        return view('admin.whole_abdomen_female.create', compact('patientTest', 'wholeAbdomenFemale'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function createId($id)
+    public function create()
     {
-        $patientTest = PatientTest::find($id);
-        $kubPvr = KubPvr::where('patient_test_id',$id)->first();
-        return view('admin.kub_pvr.create', compact('patientTest','kubPvr'));
+        //
     }
 
     /**
@@ -50,7 +55,6 @@ class KubPvrController extends Controller
         //     'kidney_left' => 'required|integer',
         //     'lk' => 'required|integer',
         //     'rk' => 'required|integer',
-        //     'pvr' => 'required|integer',
         //     'interpretation' => 'required',
         // ]);
 
@@ -70,28 +74,27 @@ class KubPvrController extends Controller
             'kidney_left' => $request->get('kidney_left'),
             'lk' => $request->get('lk'),
             'rk' => $request->get('rk'),
-            'pvr' => $request->get('pvr'),
             'interpretation' => $request->get('interpretation'),
         ];
-
+        
         DB::beginTransaction();
 
         if($r_status==0)
         {
             try{
-                KubPvr::create($data);
+                WholeAbdomenFemale::create($data);
                 PatientTest::where('id', $patientTestID)->update($reportStatus);
                 DB::commit();
                 toast('Report Insert Sucessfully','success');
-                return redirect()->route('patient_show_test',$patient_id);
+                return redirect()->route('patient_show_test', $patient_id);
             }catch(\Exception $ex) {
                 DB::rollback();
-                toast($ex->getMessage().'Report Insert Failed','error');
+                toast($ex->getMessage(). 'Report Insert Failed','error');
                 return back();
             }
         }else{
             try{
-                KubPvr::where('patient_test_id', $patientTestID)->update($data);
+                WholeAbdomenFemale::where('patient_test_id', $patientTestID)->update($data);
                 DB::commit();
                 toast('Report Update Successfully','success');
                 return redirect()->route('patient_show_test', $patient_id);
@@ -111,8 +114,8 @@ class KubPvrController extends Controller
      */
     public function show($id)
     {
-        $kubPvr = KubPvr::where('patient_test_id',$id)->first();
-        return view('admin.kub_pvr.report', compact('kubPvr'));
+        $wholeAbdomenFemale = WholeAbdomenFemale::where('patient_test_id',$id)->first();
+        return view('admin.whole_abdomen_female.report', compact('wholeAbdomenFemale'));
     }
 
     /**

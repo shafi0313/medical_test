@@ -16,7 +16,7 @@ class PatientTestController extends Controller
      */
     public function index()
     {
-        $patientTests = PatientTest::where('status',1)->get();
+        $patientTests = PatientTest::where('status',1)->latest()->get();
         return view('admin.patient_test.index', compact('patientTests'));
     }
 

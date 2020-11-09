@@ -31,8 +31,8 @@
                                     <thead>
                                         <tr>
                                             <th style="width:5.3%">SN</th>
-                                            <th>Ref. By</th>
                                             <th>Name</th>
+                                            <th>Ref. By</th>
                                             <th>Age</th>
                                             <th>Gender</th>
                                             <th>Phone</th>
@@ -40,7 +40,7 @@
                                             {{-- <th>Mdical History</th> --}}
                                             <th>Address</th>
                                             <th>Date</th>
-                                            <th class="no-sort" style="width:7%">Action</th>
+                                            <th class="no-sort text-center" style="width:7%">Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -62,8 +62,8 @@
                                         @foreach($patientTests as $patientTest)
                                         <tr>
                                             <td class="text-center">{{ $x++ }}</td>
-                                            <td>{{ $patientTest->user->name }}</td>
                                             <td>{{ $patientTest->patient->name }}</td>
+                                            <td>{{ $patientTest->user->name }}</td>
                                             <td>{{ $patientTest->patient->age }}</td>
                                             <td>{{ $patientTest->patient->gender }}</td>
                                             <td>{{ $patientTest->patient->phone }}</td>

@@ -12,6 +12,7 @@ class AuthController extends Controller
     {
         return redirect()->route('profile.show');
     }
+    
     public function logout()
     {
         Auth::logout();
