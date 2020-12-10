@@ -39,7 +39,7 @@
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <label for="name">Patient Name<span class="t_r">*</span></label>
-                                        <input type="text" name="name" class="form-control" id="name @error('name') is-invalid @enderror" value="{{old('name')}}" placeholder="Enter Name" required>
+                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{old('name')}}" placeholder="Enter Name" required>
                                         @error('name')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
